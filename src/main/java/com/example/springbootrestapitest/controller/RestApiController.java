@@ -5,6 +5,8 @@ import com.example.springbootrestapitest.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;  // 뭔지 알아보기
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,10 +27,10 @@ public class RestApiController {
     }
 
     @PostMapping("/create")
-    public PostDto create(@RequestBody PostDto postDto) {
+    public ResponseEntity<PostDto> create(@RequestBody PostDto postDto) {
         // crtl + Alt + v : 변수 축출
         PostDto postDto1 = boardService.create(postDto);
-
-        return postDto1;
+        // ctrl + p
+        return new ResponseEntity<>(postDto1, HttpStatus.CREATED);
     }
 }
