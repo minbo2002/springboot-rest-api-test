@@ -4,6 +4,7 @@ import com.example.springbootrestapitest.dto.PostDto;
 import com.example.springbootrestapitest.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;  // 뭔지 알아보기
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
+@RequiredArgsConstructor
 public class RestApiController {
 
-    @Autowired
-    private BoardService boardService;
+    private final BoardService boardService;
 
     @GetMapping("/")
     public String test() {
