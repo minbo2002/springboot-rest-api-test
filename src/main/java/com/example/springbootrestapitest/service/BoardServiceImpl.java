@@ -3,31 +3,41 @@ package com.example.springbootrestapitest.service;
 import com.example.springbootrestapitest.dto.PostDto;
 import com.example.springbootrestapitest.entity.Post;
 import com.example.springbootrestapitest.repository.BoardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-    @Autowired
-    private BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
 
     @Override
     public PostDto create(PostDto postDto) {
 
         // dto -> entity
-        Post post = new Post();
-        post.setTitle(postDto.getTitle());
-        post.setContent(postDto.getContent());
+        Post post = mapToEntity(postDto);
 
         Post save = boardRepository.save(post);   // DB에 저장
 
         // entity -> dto
-        PostDto postDto1 = new PostDto();
-        postDto1.setTitle(save.getTitle());
-        postDto1.setContent(save.getContent());
-
+        PostDto newPostDto = mapToDto(save);
         // return
-        return postDto1;
+        return newPostDto;
+    }
+
+    // refactoring, ctrl + Alt + M : 메서드 축출
+    private PostDto mapToDto(Post save) {
+        PostDto newPostDto = new PostDto();
+        newPostDto.setTitle(save.getTitle());
+        newPostDto.setContent(save.getContent());
+        return newPostDto;
+    }
+
+    private Post mapToEntity(PostDto postDto) {
+        Post post = new Post();
+        post.setTitle(postDto.getTitle());
+        post.setContent(postDto.getContent());
+        return post;
     }
 }

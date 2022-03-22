@@ -30,8 +30,8 @@ public class RestApiController {
     @PostMapping("/create")
     public ResponseEntity<PostDto> create(@RequestBody PostDto postDto) {
         // crtl + Alt + v : 변수 축출
-        PostDto postDto1 = boardService.create(postDto);
+        PostDto newPostDto = boardService.create(postDto);
         // ctrl + p
-        return new ResponseEntity<>(postDto1, HttpStatus.CREATED);
+        return new ResponseEntity<>(newPostDto, HttpStatus.CREATED);
     }
 }
