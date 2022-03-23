@@ -2,6 +2,7 @@ package com.example.springbootrestapitest.service;
 
 import com.example.springbootrestapitest.dto.PostDto;
 import com.example.springbootrestapitest.entity.Post;
+import com.example.springbootrestapitest.exception.ResourceNotFoundException;
 import com.example.springbootrestapitest.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public PostDto getById(Long id) {
         Post post = boardRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("찾는 id가 없습니다"));
+                .orElseThrow(() -> new ResourceNotFoundException("post", "postId"));
         return mapToDto(post);
     }
 
@@ -49,7 +50,7 @@ public class BoardServiceImpl implements BoardService {
     public PostDto update(PostDto postDto, Long id) {
 
         Post post = boardRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("찾는 id가 없습니다"));
+                .orElseThrow(() -> new ResourceNotFoundException("post", "postId"));
 
 //        post = updateEntity(postDto);
         post.setTitle(postDto.getTitle());
@@ -61,7 +62,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void deleteById(Long id) {
         Post post = boardRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("찾는 id가 없습니다"));
+                .orElseThrow(() -> new ResourceNotFoundException("post", "postId"));
         boardRepository.delete(post);
     }
 
