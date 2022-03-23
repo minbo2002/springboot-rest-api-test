@@ -6,6 +6,9 @@ import com.example.springbootrestapitest.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
@@ -24,6 +27,13 @@ public class BoardServiceImpl implements BoardService {
         PostDto newPostDto = mapToDto(save);
         // return
         return newPostDto;
+    }
+
+    @Override
+    public List<PostDto> getAll() {
+//        return boardRepository.findAll();
+        List<Post> posts = boardRepository.findAll();
+        return posts.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
     // refactoring, ctrl + Alt + M : 메서드 축출

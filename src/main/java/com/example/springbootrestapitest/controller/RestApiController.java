@@ -14,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 public class RestApiController {
-
+/*
+    @Autowired
+    private BoardService boardService;
+*/
     private final BoardService boardService;
+    // 생성자주입 @Autowired 대신에  --> Service 앞에 final 추가하고 + 클래스명위에 @RequiredArgsConstructor 추가한다.
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String test() {
 
         return "test";
@@ -33,5 +38,11 @@ public class RestApiController {
         PostDto newPostDto = boardService.create(postDto);
         // ctrl + p
         return new ResponseEntity<>(newPostDto, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<PostDto>> getAll() {
+//        return boardService.getAll();
+        return ResponseEntity.ok(boardService.getAll());
     }
 }

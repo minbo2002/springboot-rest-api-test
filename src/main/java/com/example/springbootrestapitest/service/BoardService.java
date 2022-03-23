@@ -2,8 +2,11 @@ package com.example.springbootrestapitest.service;
 
 import com.example.springbootrestapitest.dto.PostDto;
 
+import java.util.List;
+
 public interface BoardService {
 
     PostDto create(PostDto postDto);
 
+    List<PostDto> getAll();
 }
