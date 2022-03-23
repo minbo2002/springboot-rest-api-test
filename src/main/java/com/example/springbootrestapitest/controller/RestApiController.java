@@ -2,15 +2,11 @@ package com.example.springbootrestapitest.controller;
 
 import com.example.springbootrestapitest.dto.PostDto;
 import com.example.springbootrestapitest.service.BoardService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;  // 뭔지 알아보기
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -46,5 +42,10 @@ public class RestApiController {
     @GetMapping("/get/{id}")
     public ResponseEntity<PostDto> getById(@PathVariable Long id) {
         return ResponseEntity.ok(boardService.getById(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@RequestBody PostDto postDto, @PathVariable Long id) {
+        return ResponseEntity.ok(boardService.update(postDto, id));
     }
 }

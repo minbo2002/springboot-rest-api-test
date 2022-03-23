@@ -45,6 +45,28 @@ public class BoardServiceImpl implements BoardService {
         return mapToDto(post);
     }
 
+    @Override
+    public PostDto update(PostDto postDto, Long id) {
+
+        Post post = boardRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("찾는 id가 없습니다"));
+
+//        post = updateEntity(postDto);
+        post.setTitle(postDto.getTitle());
+        post.setContent(postDto.getContent());
+
+        return mapToDto(boardRepository.save(post));
+    }
+
+    private Post updateEntity(PostDto postDto) {
+
+        return Post.builder()
+                .title(postDto.getTitle())
+                .content(postDto.getContent())
+                .build();
+    }
+
+
     // refactoring, ctrl + Alt + M : 메서드 축출
     private PostDto mapToDto(Post save) {
         PostDto newPostDto = new PostDto();

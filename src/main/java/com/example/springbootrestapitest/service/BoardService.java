@@ -11,4 +11,6 @@ public interface BoardService {
     List<PostDto> getAll();
 
     PostDto getById(Long id);
+
+    PostDto update(PostDto postDto, Long id);
 }
