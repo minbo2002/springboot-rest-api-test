@@ -58,6 +58,13 @@ public class BoardServiceImpl implements BoardService {
         return mapToDto(boardRepository.save(post));
     }
 
+    @Override
+    public void deleteById(Long id) {
+        Post post = boardRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("찾는 id가 없습니다"));
+        boardRepository.delete(post);
+    }
+
     private Post updateEntity(PostDto postDto) {
 
         return Post.builder()

@@ -13,4 +13,6 @@ public interface BoardService {
     PostDto getById(Long id);
 
     PostDto update(PostDto postDto, Long id);
+
+    void deleteById(Long id);
 }

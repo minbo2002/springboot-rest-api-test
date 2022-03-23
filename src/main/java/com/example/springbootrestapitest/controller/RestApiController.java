@@ -48,4 +48,10 @@ public class RestApiController {
     public ResponseEntity<?> update(@RequestBody PostDto postDto, @PathVariable Long id) {
         return ResponseEntity.ok(boardService.update(postDto, id));
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+            boardService.deleteById(id);
+        return ResponseEntity.ok("post 삭제가 완료되었습니다!");
+    }
 }
