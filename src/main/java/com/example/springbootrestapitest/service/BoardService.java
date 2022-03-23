@@ -9,4 +9,6 @@ public interface BoardService {
     PostDto create(PostDto postDto);
 
     List<PostDto> getAll();
+
+    PostDto getById(Long id);
 }

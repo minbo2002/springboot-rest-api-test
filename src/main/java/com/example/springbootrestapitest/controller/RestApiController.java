@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +41,10 @@ public class RestApiController {
     public ResponseEntity<List<PostDto>> getAll() {
 //        return boardService.getAll();
         return ResponseEntity.ok(boardService.getAll());
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<PostDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(boardService.getById(id));
     }
 }

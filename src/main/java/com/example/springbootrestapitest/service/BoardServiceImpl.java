@@ -33,7 +33,16 @@ public class BoardServiceImpl implements BoardService {
     public List<PostDto> getAll() {
 //        return boardRepository.findAll();
         List<Post> posts = boardRepository.findAll();
-        return posts.stream().map(this::mapToDto).collect(Collectors.toList());
+        return posts.stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public PostDto getById(Long id) {
+        Post post = boardRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("찾는 id가 없습니다"));
+        return mapToDto(post);
     }
 
     // refactoring, ctrl + Alt + M : 메서드 축출
