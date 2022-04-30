@@ -1,7 +1,7 @@
 package com.example.springbootrestapitest.service;
 
 import com.example.springbootrestapitest.dto.PostDto;
-import com.example.springbootrestapitest.entity.Post;
+import com.example.springbootrestapitest.entity.Board;
 import com.example.springbootrestapitest.exception.ResourceNotFoundException;
 import com.example.springbootrestapitest.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +20,9 @@ public class BoardServiceImpl implements BoardService {
     public PostDto create(PostDto postDto) {
 
         // dto -> entity
-        Post post = mapToEntity(postDto);
+        Board post = mapToEntity(postDto);
 
-        Post save = boardRepository.save(post);   // DB에 저장
+        Board save = boardRepository.save(post);   // DB에 저장
 
         // entity -> dto
         PostDto newPostDto = mapToDto(save);
@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<PostDto> getAll() {
 //        return boardRepository.findAll();
-        List<Post> posts = boardRepository.findAll();
+        List<Board> posts = boardRepository.findAll();
         return posts.stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public PostDto getById(Long id) {
-        Post post = boardRepository.findById(id)
+        Board post = boardRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("post", "postId"));
         return mapToDto(post);
     }
@@ -49,7 +49,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public PostDto update(PostDto postDto, Long id) {
 
-        Post post = boardRepository.findById(id)
+        Board post = boardRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("post", "postId"));
 
 //        post = updateEntity(postDto);
@@ -61,14 +61,14 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void deleteById(Long id) {
-        Post post = boardRepository.findById(id)
+        Board post = boardRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("post", "postId"));
         boardRepository.delete(post);
     }
 
-    private Post updateEntity(PostDto postDto) {
+    private Board updateEntity(PostDto postDto) {
 
-        return Post.builder()
+        return Board.builder()
                 .title(postDto.getTitle())
                 .content(postDto.getContent())
                 .build();
@@ -76,15 +76,15 @@ public class BoardServiceImpl implements BoardService {
 
 
     // refactoring, ctrl + Alt + M : 메서드 축출
-    private PostDto mapToDto(Post save) {
+    private PostDto mapToDto(Board save) {
         PostDto newPostDto = new PostDto();
         newPostDto.setTitle(save.getTitle());
         newPostDto.setContent(save.getContent());
         return newPostDto;
     }
 
-    private Post mapToEntity(PostDto postDto) {
-        Post post = new Post();
+    private Board mapToEntity(PostDto postDto) {
+        Board post = new Board();
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
         return post;
