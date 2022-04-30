@@ -2,6 +2,6 @@
 
 // create read.md
 
-### bod 프로젝트
+### board 프로젝트
 
 코드리뷰
