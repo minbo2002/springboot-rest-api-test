@@ -1,9 +1,9 @@
-package com.example.springbootrestapitest.dto;
+package com.example.springbootrestapitest.dto.board;
 
 import lombok.Data;
 
 @Data
-public class PostDto {
+public class BoardDto {
 
     private String title;
     private String content;

@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringbootRestApiTestApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(SpringbootRestApiTestApplication.class, args);
     }
 
