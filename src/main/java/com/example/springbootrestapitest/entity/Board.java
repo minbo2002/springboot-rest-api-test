@@ -18,6 +18,9 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 50)
     private String title;
+
+    @Column(nullable = false, length = 500)
     private String content;
 }
