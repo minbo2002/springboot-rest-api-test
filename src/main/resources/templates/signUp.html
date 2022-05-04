@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 폼</title>
+</head>
+
+<style>
+    .layout {
+        width: 500px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    .layout input {
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+</style>
+
+<body>
+
+<div class="layout">
+    <form action="/api/user/signUp/userData" method="post" enctype="multipart/form-data">
+       아이디 : <input type="text" name="userId">
+     비밀번호 : <input type="text" name="password">
+        이름 : <input type="text" name="name">
+        나이 : <input type="text" name="age">
+        주소 : <input type="text" name="address">
+
+        <button type="submit">가입하기</button>
+    </form>
+</div>
+
+</body>
+</html>

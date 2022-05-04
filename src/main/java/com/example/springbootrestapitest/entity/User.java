@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -21,8 +18,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 30)
     private String userId;
+
+    @Column(nullable = false, length = 20)
+    private String password;
+
+    @Column(nullable = false, length = 30)
     private String name;
+
+    @Column(nullable = false, length = 10)
     private int age;
+
+    @Column(nullable = false, length = 300)
     private String address;
 }

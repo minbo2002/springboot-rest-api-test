@@ -19,24 +19,26 @@ public class UserServiceImpl implements UserService {
 
         User save = userRepository.save(user);
 
-        UserDto newUserDto = mapToDto(save);
+        UserDto signUpUserDto = mapToDto(save);
 
-        return newUserDto;
+        return signUpUserDto;
     }
 
     private UserDto mapToDto(User save) {
-        UserDto newUserDto = new UserDto();
-        newUserDto.setUserId(save.getUserId());
-        newUserDto.setName(save.getName());
-        newUserDto.setAge(save.getAge());
-        newUserDto.setAddress(save.getAddress());
+        UserDto signUpUserDto = new UserDto();
+        signUpUserDto.setUserId(save.getUserId());
+        signUpUserDto.setPassword(save.getPassword());
+        signUpUserDto.setName(save.getName());
+        signUpUserDto.setAge(save.getAge());
+        signUpUserDto.setAddress(save.getAddress());
 
-        return newUserDto;
+        return signUpUserDto;
     }
 
     private User mapToEntity(UserDto userDto) {
         User user = new User();
         user.setUserId(userDto.getUserId());
+        user.setPassword(userDto.getPassword());
         user.setName(userDto.getName());
         user.setAge(userDto.getAge());
         user.setAddress(userDto.getAddress());
