@@ -15,10 +15,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto create(UserDto userDto) {
 
+        // dto -> entity
         User user = mapToEntity(userDto);
 
+        // DB 저장
         User save = userRepository.save(user);
 
+        // entity -> dto
         UserDto signUpUserDto = mapToDto(save);
 
         return signUpUserDto;
