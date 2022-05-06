@@ -13,22 +13,4 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/api/user")
 public class UserApiController {
 
-    private final UserService userService;
-
-    @GetMapping(path = "signUp/main")
-    public ModelAndView signUpMain() {
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("signUp");
-
-        return modelAndView;
-    }
-
-    @PostMapping(path = "signUp/userData")
-    public ResponseEntity<UserDto> signUp(@RequestBody UserDto userDto) {
-
-        UserDto signUpUserDto = userService.create(userDto);
-
-        return new ResponseEntity<>(signUpUserDto, HttpStatus.CREATED);
-    }
 }
