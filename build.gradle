@@ -23,15 +23,21 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compileOnly 'org.projectlombok:lombok'
-    implementation 'mysql:mysql-connector-java'
-//    runtimeOnly 'mysql:mysql-connector-java'
+
+    // Test를 위한 의존성 추가
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+//    implementation 'mysql:mysql-connector-java'
+    runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
