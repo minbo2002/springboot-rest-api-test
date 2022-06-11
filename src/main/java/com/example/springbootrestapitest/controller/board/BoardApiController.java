@@ -20,6 +20,7 @@ public class BoardApiController {
     @GetMapping("/test")
     public String test() {
 
+        System.out.println("PR test");
         return "test";
     }
 
