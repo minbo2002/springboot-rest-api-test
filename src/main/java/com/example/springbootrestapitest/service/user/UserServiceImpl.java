@@ -2,7 +2,7 @@ package com.example.springbootrestapitest.service.user;
 
 import com.example.springbootrestapitest.dto.user.UserDto;
 import com.example.springbootrestapitest.entity.User;
-import com.example.springbootrestapitest.repository.user.UserRepository;
+import com.example.springbootrestapitest.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     private UserDto mapToDto(User save) {
         UserDto signUpUserDto = new UserDto();
-        signUpUserDto.setUserId(save.getId());
+        signUpUserDto.setUserId(save.getUserId());
         signUpUserDto.setPassword(save.getPassword());
         signUpUserDto.setName(save.getName());
         signUpUserDto.setAge(save.getAge());
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     private User mapToEntity(UserDto userDto) {
         User user = new User();
-        user.setId(userDto.getUserId());
+        user.setUserId(userDto.getUserId());
         user.setPassword(userDto.getPassword());
         user.setName(userDto.getName());
         user.setAge(userDto.getAge());
